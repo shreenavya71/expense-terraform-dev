@@ -34,7 +34,7 @@ module "frontend" {
     )
 }
 
-module "ansible" {
+/* module "ansible" {
     source  = "terraform-aws-modules/ec2-instance/aws"
 
     name = "${var.project_name}-${var.environment}-ansible"
@@ -50,12 +50,12 @@ module "ansible" {
             Name = "${var.project_name}-${var.environment}-frontend"
         }
     )
-}
+} */
 module "records" {
     source  = "terraform-aws-modules/route53/aws//modules/records"
     version = "~> 3.0"
 
-    zone_name = var.zone.name
+    zone_name = var.zone_name
 
     records = [
         {
