@@ -48,7 +48,7 @@ module "ansible" {
     tags = merge(
         var.common_tags,
         {
-            Name = "${var.project_name}-${var.environment}-frontend"
+            Name = "${var.project_name}-${var.environment}-ansible"
         }
     )
 }
