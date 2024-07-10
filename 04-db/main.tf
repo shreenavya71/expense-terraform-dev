@@ -64,3 +64,22 @@ module "db" {
         },
     ]
 }
+
+# create R53 record for RDS endpoint
+
+module "records" {
+    source  = "terraform-aws-modules/route53/aws//modules/records"
+    version = "~> 3.0"
+
+    zone_name = var.zone_name
+
+    records = [
+        {
+        name    = "db"
+        type    = "CNAME"
+        records = [
+            module.db.db_instance_address
+        ]
+        },
+    ]
+}
