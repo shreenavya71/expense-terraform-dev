@@ -33,3 +33,30 @@ module "frontend" {
         }
     )
 }
+module "records" {
+    source  = "terraform-aws-modules/route53/aws//modules/records"
+    version = "~> 3.0"
+
+    zone_name = var.zone.name
+
+    records = [
+        {
+        name    = "backend"
+        type    = "A"
+        ttl = 1
+        records = [
+            module.backend.private_ip,
+        ]
+        },
+        {
+        name    = ""
+        type    = "A"
+        ttl     = 3600
+        records = [
+            "10.10.10.10",
+        ]
+        },
+    ]
+
+    depends_on = [module.zones]
+}
