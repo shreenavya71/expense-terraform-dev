@@ -75,11 +75,12 @@ module "records" {
 
     records = [
         {
-        name    = "db"
-        type    = "CNAME"
-        records = [
-            module.db.db_instance_address
-        ]
-        },
+            name    = "db"
+            type    = "CNAME"
+            ttl     = 1
+            records = [
+                module.db.db_instance_address
+            ]
+        }
     ]
 }
