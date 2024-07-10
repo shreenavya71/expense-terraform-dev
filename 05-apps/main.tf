@@ -49,14 +49,20 @@ module "records" {
         ]
         },
         {
-        name    = ""
+        name    = "frontend"
         type    = "A"
-        ttl     = 3600
+        ttl     = 1
         records = [
-            "10.10.10.10",
+            module.frontend.private_ip
+        ]
+        },
+        {
+        name    = "" # devopsnavyahome.online
+        type    = "A"
+        ttl     = 1
+        records = [
+            module.frontend.public_ip
         ]
         },
     ]
-
-    depends_on = [module.zones]
 }
