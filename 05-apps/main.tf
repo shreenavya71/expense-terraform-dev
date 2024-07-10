@@ -34,7 +34,7 @@ module "frontend" {
     )
 }
 
-/* module "ansible" {
+module "ansible" {
     source  = "terraform-aws-modules/ec2-instance/aws"
 
     name = "${var.project_name}-${var.environment}-ansible"
@@ -44,13 +44,14 @@ module "frontend" {
     # convert StringList to list and get first element
     subnet_id              = local.public_subnet_id
     ami = data.aws_ami.ami_info.id
+    user_data = file("expwnse.sh")
     tags = merge(
         var.common_tags,
         {
             Name = "${var.project_name}-${var.environment}-frontend"
         }
     )
-} */
+}
 module "records" {
     source  = "terraform-aws-modules/route53/aws//modules/records"
     version = "~> 3.0"
