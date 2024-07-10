@@ -40,7 +40,7 @@ module "ansible" {
     name = "${var.project_name}-${var.environment}-ansible"
 
     instance_type          = "t3.micro"
-    vpc_security_group_ids = [data.aws_ssm_parameter.frontend_sg_id.value]
+    vpc_security_group_ids = [data.aws_ssm_parameter.ansible_sg_id.value]
     # convert StringList to list and get first element
     subnet_id              = local.public_subnet_id
     ami = data.aws_ami.ami_info.id
