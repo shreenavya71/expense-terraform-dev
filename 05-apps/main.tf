@@ -44,7 +44,7 @@ module "ansible" {
     # convert StringList to list and get first element
     subnet_id              = local.public_subnet_id
     ami = data.aws_ami.ami_info.id
-    user_data = file("expwnse.sh")
+    user_data = file("expense.sh")
     tags = merge(
         var.common_tags,
         {
