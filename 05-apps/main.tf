@@ -51,6 +51,7 @@ module "ansible" {
             Name = "${var.project_name}-${var.environment}-ansible"
         }
     )
+    depends_on = [ module.backend,module.frontend ]
 }
 module "records" {
     source  = "terraform-aws-modules/route53/aws//modules/records"
@@ -64,7 +65,7 @@ module "records" {
         type    = "A"
         ttl = 1
         records = [
-            module.backend.private_ip,
+            module.backend.private_ip
         ]
         },
         {
