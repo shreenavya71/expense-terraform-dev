@@ -1,7 +1,8 @@
 #!/bin/bash
+# user data will get sudo access
 dnf install ansible -y
-cd /tmp || exit 1
+cd /tmp
 git clone https://github.com/shreenavya71/expense-ansible-roles.git
-cd expense-ansible-roles || exit 1
+cd expense-ansible-roles
 ansible-playbook main.yaml -e component=backend -e login_password=ExpenseApp1
 ansible-playbook main.yaml -e component=frontend
