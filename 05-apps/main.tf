@@ -51,7 +51,7 @@ module "ansible" {
             Name = "${var.project_name}-${var.environment}-ansible"
         }
     )
-    depends_on = [ module.backend,module.frontend ]
+    depends_on = [ module.backend,module.frontend ]  # by this ansible will be created after frontend and backend
 }
 module "records" {
     source  = "terraform-aws-modules/route53/aws//modules/records"
